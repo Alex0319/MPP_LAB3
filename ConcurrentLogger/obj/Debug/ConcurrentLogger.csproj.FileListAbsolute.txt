@@ -1,0 +1,1 @@
+E:\lAB\5 семестр\СПП\MPP_LAB3\ConcurrentLogger\ConcurrentLogger\bin\Debug\ConcurrentLogger.exe.config
