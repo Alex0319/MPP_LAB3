@@ -1,1 +1,7 @@
 E:\lAB\5 семестр\СПП\MPP_LAB3\ConcurrentLogger\ConcurrentLogger\bin\Debug\ConcurrentLogger.exe.config
+E:\lAB\5 семестр\СПП\MPP_LAB3\ConcurrentLogger\obj\Debug\ConcurrentLogger.csprojResolveAssemblyReference.cache
+E:\lAB\5 семестр\СПП\MPP_LAB3\ConcurrentLogger\bin\Debug\ConcurrentLogger.exe.config
+E:\lAB\5 семестр\СПП\MPP_LAB3\ConcurrentLogger\bin\Debug\ConcurrentLogger.exe
+E:\lAB\5 семестр\СПП\MPP_LAB3\ConcurrentLogger\bin\Debug\ConcurrentLogger.pdb
+E:\lAB\5 семестр\СПП\MPP_LAB3\ConcurrentLogger\obj\Debug\ConcurrentLogger.exe
+E:\lAB\5 семестр\СПП\MPP_LAB3\ConcurrentLogger\obj\Debug\ConcurrentLogger.pdb
