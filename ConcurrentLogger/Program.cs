@@ -12,11 +12,11 @@ namespace ConcurrentLogger
         {
             int bufferLimit=3;
             
-            DateTime date = DateTime.Now;
-            string dateString = date.ToString("\n%d \n");           
             ILoggerTarget[] logTarget = new ILoggerTarget[] { new LoggerTargetWriteToFile()};
-            Logger logger=new Logger(bufferLimit, logTarget);
+            var controller = new ThreadPoolEvents(new Logger(bufferLimit, logTarget));
+            controller.ThreadPoolLogging();
             Console.ReadKey();
+            controller.SetEndOfLogging();
         }
     }
 }
