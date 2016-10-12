@@ -11,12 +11,11 @@ namespace ConcurrentLogger
         static void Main(string[] args)
         {
             int bufferLimit=3;
-            
-            ILoggerTarget[] logTarget = new ILoggerTarget[] { new LoggerTargetWriteToFile()};
+
+            ILoggerTarget[] logTarget = new ILoggerTarget[] { new LoggerTargetFile("FileLog.txt") };
             var controller = new ThreadPoolEvents(new Logger(bufferLimit, logTarget));
             controller.ThreadPoolLogging();
             Console.ReadKey();
-            controller.SetEndOfLogging();
         }
     }
 }
