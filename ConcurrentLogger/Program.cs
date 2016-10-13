@@ -14,7 +14,7 @@ namespace ConcurrentLogger
 
             ILoggerTarget[] logTarget = new ILoggerTarget[] { new LoggerTargetFile("FileLog.txt"),new LoggerTargetUdp("127.0.0.1",9000) };
             var controller = new LogsCreator(new Logger(bufferLimit, logTarget));
-            controller.CreateLogs(10000);
+            controller.CreateLogs(10000, LogLevel.Info);
             Console.ReadKey();
         }
     }

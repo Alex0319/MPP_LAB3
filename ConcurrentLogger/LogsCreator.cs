@@ -16,10 +16,10 @@ namespace ConcurrentLogger
             this.logger = logger;
         }
 
-        public void CreateLogs(int logsCount)
+        public void CreateLogs(int logsCount,LogLevel level)
         {
             for (int i = 0; i < logsCount; i++)
-                logger.Log(new LogInfo(LogLevel.Info, "task " + i));
+                logger.Log(new LogInfo(level, "task " + i));
             logger.FlushRemainLogs();
         }
     }
