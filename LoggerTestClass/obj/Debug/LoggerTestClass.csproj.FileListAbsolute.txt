@@ -1,0 +1,7 @@
+E:\lAB\5 семестр\СПП\MPP_LAB3\LoggerTestClass\bin\Debug\LoggerTestClass.dll
+E:\lAB\5 семестр\СПП\MPP_LAB3\LoggerTestClass\bin\Debug\LoggerTestClass.pdb
+E:\lAB\5 семестр\СПП\MPP_LAB3\LoggerTestClass\bin\Debug\ConcurrentLogger.exe
+E:\lAB\5 семестр\СПП\MPP_LAB3\LoggerTestClass\bin\Debug\ConcurrentLogger.pdb
+E:\lAB\5 семестр\СПП\MPP_LAB3\LoggerTestClass\obj\Debug\LoggerTestClass.csprojResolveAssemblyReference.cache
+E:\lAB\5 семестр\СПП\MPP_LAB3\LoggerTestClass\obj\Debug\LoggerTestClass.dll
+E:\lAB\5 семестр\СПП\MPP_LAB3\LoggerTestClass\obj\Debug\LoggerTestClass.pdb

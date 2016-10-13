@@ -38,11 +38,6 @@ namespace ConcurrentLogger
             logInfoList.Add(logInfo);
         }
 
-        public void FlushRemainLogs()
-        {
-            ThreadPool.QueueUserWorkItem(FlushLogsInAllTargets, new ThreadInfo { logs = logInfoList, threadId = bufferId++ }); 
-        }
-
         private void FlushLogsInAllTargets(object objThreadInfo)
         {
             var threadInfo=(ThreadInfo)objThreadInfo;
@@ -60,6 +55,21 @@ namespace ConcurrentLogger
                 Monitor.PulseAll(locker);
             }
             finally 
+            {
+                Monitor.Exit(locker);
+            }
+        }
+
+        public void FlushRemainLogs()
+        {
+            ThreadPool.QueueUserWorkItem(FlushLogsInAllTargets, new ThreadInfo { logs = logInfoList, threadId = bufferId++ });
+            Monitor.Enter(locker);
+            try
+            {
+                while (bufferId != currentBufferId)
+                    Monitor.Wait(locker);
+            }
+            finally
             {
                 Monitor.Exit(locker);
             }

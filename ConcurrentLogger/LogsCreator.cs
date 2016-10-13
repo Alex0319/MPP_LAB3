@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace ConcurrentLogger
 {
-    public class ThreadPoolEvents
+    public class LogsCreator
     {
         private Logger logger;
 
-        public ThreadPoolEvents(Logger logger)
+        public LogsCreator(Logger logger)
         {
             this.logger = logger;
         }
 
-        public void ThreadPoolLogging()
+        public void CreateLogs(int logsCount)
         {
-            for (int i = 0; i < 10000; i++)
+            for (int i = 0; i < logsCount; i++)
                 logger.Log(new LogInfo(LogLevel.Info, "task " + i));
             logger.FlushRemainLogs();
         }
