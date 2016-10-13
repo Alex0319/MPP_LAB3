@@ -10,14 +10,16 @@ namespace ConcurrentLogger
 {
     public class LoggerTargetUdp:ILoggerTarget
     {
-        private string ip;
-        private int port;
+        private string clientIp,serverIp;
+        private int clientPort,serverPort;
         private UdpClient udpClient;
 
-        public LoggerTargetUdp(string ip,int port)
+        public LoggerTargetUdp(string serverIp, int serverPort,string clientIp, int clientPort)
         {
-            this.ip = ip;
-            this.port = port;
+            this.serverIp = serverIp;
+            this.serverPort = serverPort;
+            this.clientIp = clientIp;
+            this.clientPort = clientPort;
         }
 
         public bool Flush(LogInfo logInfo)
@@ -36,8 +38,8 @@ namespace ConcurrentLogger
         {
             try
             {
-                udpClient = new UdpClient(ip, port);
-                udpClient.Send(log, log.Length);
+                udpClient = new UdpClient(clientIp, clientPort);
+                udpClient.Send(log, log.Length,serverIp,serverPort);
             }
             finally 
             {

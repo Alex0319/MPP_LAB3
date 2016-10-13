@@ -43,5 +43,23 @@ namespace LoggerTestClass
             secondTestTarget.Close();
         }
 
+        [TestMethod]
+        public void TestMethod_TestUdpTarget()
+        {
+            int bufferLimit = 5, logsCount = 1000;
+            TestUdpServer udpServer = new TestUdpServer("127.0.0.1", 9000);
+            LoggerTargetUdp targetUdp = new LoggerTargetUdp("127.0.0.1", 9000, "0.0.0.0", 0);           
+            StringBuilder stringBuilder = new StringBuilder();
+            ILoggerTarget[] logTarget = new ILoggerTarget[] { targetUdp };
+            udpServer.StartReceive();
+            var logsCreator = new LogsCreator(new Logger(bufferLimit, logTarget));
+            logsCreator.CreateLogs(logsCount, LogLevel.Debug);
+            for (int i = 0; i < logsCount; i++)
+                stringBuilder.Append(i);
+            udpServer.Synchronize();
+            udpServer.Close();
+            CollectionAssert.AreEqual(Encoding.Default.GetBytes(stringBuilder.ToString()),udpServer.GetMessage());
+        }
+
     }
 }
