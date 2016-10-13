@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 
@@ -26,7 +27,7 @@ namespace LoggerTestClass
         public void StartReceive()
         {
             isReadSocket = true;
-            udpClient = new UdpClient(serverIP, serverPort);
+            udpClient = new UdpClient(new IPEndPoint(IPAddress.Parse(serverIP), serverPort));
             receiveAsync = Task.Factory.StartNew(() => TaskReceive());
         }
 

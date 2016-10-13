@@ -48,7 +48,7 @@ namespace LoggerTestClass
         {
             int bufferLimit = 5, logsCount = 1000;
             TestUdpServer udpServer = new TestUdpServer("127.0.0.1", 9000);
-            LoggerTargetUdp targetUdp = new LoggerTargetUdp("127.0.0.1", 9000, "0.0.0.0", 0);           
+            LoggerTargetUdp targetUdp = new LoggerTargetUdp("127.0.0.1", 9000, "127.0.0.1", 10000);           
             StringBuilder stringBuilder = new StringBuilder();
             ILoggerTarget[] logTarget = new ILoggerTarget[] { targetUdp };
             udpServer.StartReceive();
@@ -60,6 +60,5 @@ namespace LoggerTestClass
             udpServer.Close();
             CollectionAssert.AreEqual(Encoding.Default.GetBytes(stringBuilder.ToString()),udpServer.GetMessage());
         }
-
     }
 }

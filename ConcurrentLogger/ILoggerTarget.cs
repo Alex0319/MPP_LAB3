@@ -10,5 +10,7 @@ namespace ConcurrentLogger
     {
         bool Flush(LogInfo logInfo);
         Task<bool> FlushAsync(LogInfo logInfo);
+
+
     }
 }

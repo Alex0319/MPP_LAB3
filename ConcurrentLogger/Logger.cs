@@ -50,7 +50,6 @@ namespace ConcurrentLogger
                 foreach (ILoggerTarget currentTarget in target)
                     foreach (LogInfo log in logsList)
                         currentTarget.Flush(log);
-                Thread.Sleep(5);
                 currentBufferId++;
                 Monitor.PulseAll(locker);
             }

@@ -38,8 +38,8 @@ namespace ConcurrentLogger
         {
             try
             {
-                udpClient = new UdpClient(clientIp, clientPort);
-                udpClient.Send(log, log.Length,serverIp,serverPort);
+                udpClient = new UdpClient(new IPEndPoint(IPAddress.Parse(clientIp), clientPort));
+                udpClient.Send(log, log.Length,new IPEndPoint(IPAddress.Parse(serverIp),serverPort));
             }
             finally 
             {
