@@ -46,5 +46,8 @@ namespace ConcurrentLogger
                 udpClient.Close();
             }
         }
+
+        public void Close()
+        { }
     }
 }

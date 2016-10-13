@@ -31,21 +31,30 @@ namespace LoggerTestClass
             receiveAsync = Task.Factory.StartNew(() => TaskReceive());
         }
 
-        public async void TaskReceive()
+        public void TaskReceive()
         {
-            int count = 0;
-            while (isReadSocket)
+            try
             {
-                var receiveBytes = await udpClient.ReceiveAsync();
-                stringBuilder.Append(count++);                
+                while (isReadSocket)
+                {
+                    IPEndPoint clientPoint = null;
+                    var receiveBytes = udpClient.Receive(ref clientPoint);
+                    string message = Encoding.Default.GetString(receiveBytes);
+                    int index = message.IndexOf("task")+5;
+                    stringBuilder.Append(message.Substring(index,message.Length-index-2));
+                }
+            }
+            finally
+            {
+                udpClient.Close();
             }
         }
 
         public void Synchronize()
         {
+            receiveAsync.Wait(1500);
             isReadSocket = false;
-            receiveAsync.Wait();
-            receiveAsync.Dispose();
+            //            receiveAsync.Dispose();
             receiveAsync = null;
         }
 

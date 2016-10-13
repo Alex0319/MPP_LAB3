@@ -12,7 +12,6 @@ namespace LoggerTestClass
     {
         private MemoryStream memStream;
         private StringBuilder message = new StringBuilder();
-        private int count;
 
         public TestTarget()
         {
@@ -21,7 +20,7 @@ namespace LoggerTestClass
 
         public void Write(LogInfo logInfo)
         {
-            message.Append(count++);
+            message.Append(logInfo.message.Substring(5));
             byte[] log=Encoding.Default.GetBytes(logInfo.ConvertToString().ToArray());
             memStream.Write(log, 0, log.Length);
         }
@@ -50,6 +49,5 @@ namespace LoggerTestClass
             memStream.Close();
             memStream.Dispose();
         }
-
     }
 }

@@ -9,11 +9,10 @@ namespace LoggerTestClass
     [TestClass]
     public class LoggerTest
     {
-
         [TestMethod]
         public void TestMethod_TestOneTarget()
         {
-            int bufferLimit=5, logsCount=10000;
+            int bufferLimit=1, logsCount=10000;
             TestTarget testTarget = new TestTarget();
             StringBuilder stringBuilder = new StringBuilder();
             ILoggerTarget[] logTarget = new ILoggerTarget[] { testTarget };
@@ -46,7 +45,7 @@ namespace LoggerTestClass
         [TestMethod]
         public void TestMethod_TestUdpTarget()
         {
-            int bufferLimit = 5, logsCount = 1000;
+            int bufferLimit = 5, logsCount = 100;
             TestUdpServer udpServer = new TestUdpServer("127.0.0.1", 9000);
             LoggerTargetUdp targetUdp = new LoggerTargetUdp("127.0.0.1", 9000, "127.0.0.1", 10000);           
             StringBuilder stringBuilder = new StringBuilder();

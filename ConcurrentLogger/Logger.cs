@@ -13,7 +13,8 @@ namespace ConcurrentLogger
         private ILoggerTarget[] target;
         private object locker=new object();
         private List<LogInfo> logInfoList;
-        private int bufferId=0,currentBufferId=0;
+        private volatile int bufferId=0;
+        private volatile int currentBufferId=0;
 
         private class ThreadInfo
         {
@@ -32,10 +33,10 @@ namespace ConcurrentLogger
         {
             if (logInfoList.Count == bufferLimit)
             {
-                ThreadPool.QueueUserWorkItem(FlushLogsInAllTargets, new ThreadInfo { logs=logInfoList, threadId = bufferId++});
+                ThreadPool.QueueUserWorkItem(FlushLogsInAllTargets, new ThreadInfo { logs = logInfoList, threadId = bufferId++});
                 logInfoList=new List<LogInfo>();
             }
-            logInfoList.Add(logInfo);
+            logInfoList.Add(logInfo);       
         }
 
         private void FlushLogsInAllTargets(object objThreadInfo)
@@ -72,6 +73,8 @@ namespace ConcurrentLogger
             {
                 Monitor.Exit(locker);
             }
+            foreach (ILoggerTarget currentTarget in target)
+                currentTarget.Close();
         }
     }
 }
